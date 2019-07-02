@@ -42,6 +42,23 @@ echo "deb https://repos.influxdata.com/debian stretch stable" | sudo tee /etc/ap
 sudo apt update
 sudo apt install influxdb
 
+# edit influxdb config
+sudo nano /etc/influxdb/influxdb.conf
+
 # start influx db
 sudo systemctl enable influxdb
 sudo systemctl start influxdb
+
+###########
+# grafana #
+###########
+
+wget https://dl.grafana.com/oss/release/grafana_6.2.5_amd64.deb
+sudo dpkg -i grafana_6.2.5_amd64.deb
+
+# grafana autostart
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable grafana-server
+
+# start grafana
+sudo /bin/systemctl start grafana-server
